@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<img v-bind:src="imgurl" alt="" />
+			<a v-bind:href="href">百度一下</a>
+			<!-- 语法糖 -->
+			<a :href="href">百度一下2</a>
+		</div>
+	</body>
+	<script src="../js/vue.js"></script>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+				message:"Hello world",
+				imgurl:"https://w.wallhaven.cc/full/j5/wallhaven-j5mz95.png",
+				href:"https://www.baidu.com"
+			}
+		});
+	</script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/vue.js"></script>
+	</head>
+	<body>
+		<diV id="app">
+			<h2>{{ counter }}</h2>
+			<button v-on:click="add">+</button>
+			<button @click="sub">-</button>
+		</diV>
+	</body>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+				counter:1,
+				
+			},
+			methods:{
+				add:function(){
+					this.counter ++;
+					console.log("按钮加触发");
+				},
+				sub:function(){
+					this.counter--;
+					console.log("按钮减触发");
+				}
+			}
+		});
+	</script>
+</html>

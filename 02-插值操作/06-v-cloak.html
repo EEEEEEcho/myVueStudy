@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			[v-cloak]{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<h2 v-cloak>{{message}}</h2>
+		</div>
+	</body>
+	<script src="../js/vue.js"></script>
+	<script>
+		//在vue解析之前，div中有一个属性v-cloak,经过渲染之后display为none不展示
+		//在vue解析之后，div中没有了这个属性v-cloak，然后经过渲染之后进行展示
+		setTimeout(function(){
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello world"
+				}
+			});
+		},1000);
+	</script>
+</html>

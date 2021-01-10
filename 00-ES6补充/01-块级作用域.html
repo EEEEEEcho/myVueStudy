@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button>按钮1</button>
+		<button>按钮2</button>
+		<button>按钮3</button>
+		<button>按钮4</button>
+		<button>按钮5</button>
+	</body>
+	<script>
+		//1.变量作用域:变量在什么范围内是可用的
+		// {
+		// 	var name = 'why';
+		// 	console.log(name);
+		// }
+		// //{}对于var定义的变量是没有限制的
+		// console.log(name);
+		
+		//2.没有块级作用域引起的问题：if块级
+		var func;
+		if(true){
+			var name = "why";
+			func = function(){
+				console.log(name);
+			}
+		}
+		name = "hello";
+		//本来调用方法想要打印why，但现在name被修改成了hello
+		func();
+		
+		//3.没有块级作用域引起的问题:for的块级
+		var btns = document.getElementsByTagName('button');
+		for(var i = 0;i < btns.length;i ++){
+			btns[i].addEventListener('click',function(){
+				console.log('第' + i + '个按钮被点击');
+				//这里会打印  ‘第5个按钮被点击’
+				//原因:在添加的监听事件function被触发之前，这个i已经加到5了。
+				//意思就是这些监听事件只是添加了而没有触发，在添加完之后点击按钮
+				//的时候才触发，触发时，i已经加到了5，所以每一个打印出来的都是5
+			});
+		}
+		//改进方法是添加闭包
+		var btns2 = document.getElementsByTagName('button');
+		for(var i = 0;i < btns2.length;i ++){
+			(function(i){
+				btns2[i].addEventListener('click',function(){
+					console.log('第' + i + '个按钮被点击');
+				})
+			})(i);
+		}
+		//summary：ES5之前因为for和if都没有块级作用域，在很多时候都必须来借助于function的作用域
+		//来解决应用外面变量的问题，但是在es6中加入了let，let是有if和for的块级作用域的
+		const btn3 = document.getElementsByTagName('button');
+		for(let i = 0;i < btn3.length;i ++){
+			btn3[i].addEventListener('click',function(){
+				console.log("btn3第" + i + "个按钮被点击");
+			})
+		}
+	</script>
+</html>

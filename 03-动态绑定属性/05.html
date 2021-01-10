@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!--  -->
+		<style>
+			.redColor{
+				color: #FF0000;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(movie,index) in movies" :class="{redColor: index == tmpIndex ? isRed : !isRed}" 
+				@click="changeColor($event,index)">{{index}}-{{movie}}</li>
+			</ul>
+		</div>
+	</body>
+	<script src="../js/vue.js"></script>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+				movies:['海王','复仇者联盟','金刚狼','火影忍者'],
+				isRed:true,
+				tmpIndex:0
+			},
+			methods:{
+				changeColor:function(event,index){
+					this.isRed = true;
+					this.tmpIndex = index;
+				}
+			}
+		});
+	</script>
+</html>

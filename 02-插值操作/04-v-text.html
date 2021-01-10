@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div id="app">
+			<h2>{{message}} ,Echo</h2>
+			<!-- v-text会覆盖掉原有的消息 -->
+			<h2 v-text="message">Echo</h2>
+		</div>
+	</body>
+	<script src="../js/vue.js"></script>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+				message:"Hello world"
+			}
+		});
+	</script>
+</html>

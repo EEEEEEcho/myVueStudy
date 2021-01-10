@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>总价格{{totalPrice}}</h2>
+			
+		</div>
+	</body>
+	<script src="../js/vue.js"></script>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+				message:"Hello world",
+				books:[
+					{id: 100,name:'Unix编程艺术',price:119},
+					{id: 101,name:'代码大全',price:105},
+					{id: 102,name:'深入理解计算机原理',price:139},
+					{id: 103,name:'现代操作系统',price:123},
+				]
+			},
+			//计算属性有缓存机制，只计算一次并不会每次调用每次计算
+			computed:{
+				totalPrice:function(){
+					let result = 0;
+					// for(let i = 0;i < this.books.length;i ++){
+					// 	result += books[i].price;
+					// }
+					// return result;
+					//es6
+					for(let book of this.books){
+						result += book.price;
+					}
+					//es6
+					// for(let i in this.books){
+					// 	result += this.books[i].price;
+					// }
+					// console.log(result);
+					return result;
+				}
+			}
+		});
+	</script>
+</html>

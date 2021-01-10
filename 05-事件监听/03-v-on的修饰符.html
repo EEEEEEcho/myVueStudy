@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 1. .stop修饰符的使用，阻止事件冒泡 -->
+        <!-- 如果是这样的话，点击btn时同时会触发divClick，这叫做事件冒泡 -->
+        <!-- 现在的需求是，点击btn时不会触发divClick, -->
+        <div @click="divClick">
+            aaaaa
+            <button @click="btnClick">btn1</button>
+        </div>
+        <!-- 需要用到v-on的.stop修饰符来进行修饰，取消事件冒泡 -->
+        <div @click="divClick">
+            aaaaa
+            <button @click.stop="btnClick">btn1</button>
+        </div>
+        <br>
+        <!-- 2. .prevemt修饰符的使用，阻止默认事件 -->
+        <form action="post">
+            <!-- 点击提交后，因为是在表单中，其默认行为就是进行post提交，但是想要阻止这种默认行为
+            进行自己提交 -->
+            <input type="submit" value="提交">
+        </form>
+        <br>
+        <form action="post">
+            <!-- 点击提交后，因为是在表单中，其默认行为就是进行post提交，但是想要阻止这种默认行为
+            进行自己提交,加上修饰符之后就会直接调用相应定义的方法不会自动提交 -->
+            <input type="submit" value="提交" @click.prevent="submitClick">
+        </form>
+        <!-- 3. 监听某个键盘某个按键的事件 -->
+        <br>
+        <!-- 这样会监听所有键盘按键的弹起 -->
+        <input type="text" v-on:keyup="allKeyUp">
+        <br>
+        <input type="text" v-on:keyup.enter="enterKeyUp">
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        methods:{
+            divClick(){
+                console.log("divClick触发了");
+            },
+            btnClick(){
+                console.log("btnClick触发了");
+            },
+            submitClick(){
+                console.log("submitClick出发了");
+            },
+            allKeyUp(){
+                console.log("AllKeyuP");
+            },
+            enterKeyUp(){
+                console.log("enterKeyUp");
+            }
+        }
+    })
+</script>
+</html>

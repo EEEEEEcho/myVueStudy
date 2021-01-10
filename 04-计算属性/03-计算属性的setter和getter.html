@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>{{message}}</h2>
+			<h2>{{fullName}}</h2>
+		</div>
+	</body>
+	<script src="../js/vue.js"></script>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+				message:"Hello world",
+				firstName:"Echo",
+				lastName:"Soul"
+			},
+			computed:{
+				// 这其实是简写的形式
+				// fullName: function(){
+				// 	return this.firstName + ' '  + this.lastName;
+				// }
+				//完整的计算属性，应该包括set和get
+				fullName:{
+					//计算属性一般是没有set方法的，如果加上set方法后，这个计算属性就不是只读属性了
+					set:function(){
+						
+					},
+					//没有set方法后只添加get方法,get方法中返回的是只读属性
+					get:function(){
+						return this.firstName + ' ' + this.lastName;
+					}
+				}
+				//所以一般来说都使用简写的形式
+			}
+		})
+	</script>
+</html>

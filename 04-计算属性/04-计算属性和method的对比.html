@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 直接拼接,语法过于繁琐 -->
+			<h2>{{firstName}} {{lastName}}</h2>
+			<!-- 定义函数，调用函数 -->
+			<h2>{{getFullName()}}</h2>
+			<!-- 通过计算属性computed -->
+			<h2>{{fullName}}</h2>
+		</div>
+	</body>
+	<script src="../js/vue.js"></script>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+				message:"Hello world",
+				firstName:"Kobe",
+				lastName:"Bryant"
+			},
+			methods:{
+				getFullName:function(){
+					return this.firstName + ' ' + this.lastName;
+				}
+			},
+			computed:{
+				// 计算属性的效率更高，采用了缓存的机制
+				// 当firstName或lastName发生变化的时候，才会重新执行一次
+				fullName:function(){
+					return this.firstName + " " + this.lastName;
+				}
+			}
+		});
+	</script>
+</html>

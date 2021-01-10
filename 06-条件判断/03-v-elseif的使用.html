@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2 v-if="socre > 100">神仙</h2>
+        <h2 v-else-if="socre >= 100">优秀</h2>
+        <h2 v-else-if="socre >= 80">良好</h2>
+        <h2>{{result}}</h2>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"Hello wolrd",
+            socre:80
+        },
+        computed:{
+            //如果处理这种复杂逻辑最好使用计算属性  
+            result(){
+                let showMessage = "";
+                if(this.socre >= 90){
+                    showMessage = "优秀";
+                }
+                else if(this.socre >= 80){
+                    showMessage ="良好";
+                }
+                return showMessage;
+            }
+        }
+    });
+</script>
+</html>
