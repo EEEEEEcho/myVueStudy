@@ -9,11 +9,11 @@
     <div id="app">
         <span v-if="loginState">
             <label for="username">用户名登录</label>
-            <input type="text" id="username" placeholder="用户名登录">
+            <input type="text" id="username" placeholder="用户名登录" key="username">
         </span>
         <span v-else>
             <label for="mail">邮箱登录</label>
-            <input type="text" id="main" placeholder="邮箱登录">
+            <input type="text" id="main" placeholder="邮箱登录" key="mail">
         </span>
         <button @click="loginState = !loginState">切换状态</button>
     </div>
@@ -26,5 +26,8 @@
             loginState:true
         }
     })
+    // 问题描述。在输入框输入文字之后，再点击切换，输入框中的内容还是保留的
+    // 原因就是虚拟DOM，Vue将真实DOM抽象为虚拟DOM。然后再渲染，具体百度。
+    // 解决方案，再input标签中添加一个key，用来作为虚拟时的标识，防止DOM虚拟化时将其认为是同一种类型的dom进行虚拟
 </script>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- 添加一个key，进行复用时会更高效 -->
+            <li v-for="item in letters">{{item}}</li>
+        </ul>
+        <button @click="btnClick">Click Me</button>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            letters:['A','B','C','D']
+        },
+        methods:{
+            btnClick(){
+                //push方法可以做到响应式
+                //this.letters.push("aaa");
+                //可以做到响应式的有：push(),pop()删除末尾元素,shift()删除头部元素，unshift()在数组最前面添加元素
+
+
+                //索引修改无法做到响应式
+                //this.letters[0] = "bbb";
+                
+                //set(要修改的对象,索引值，修改后的值)
+                Vue.set(this.letters,0,'cccccc');
+            }
+        }
+    });
+</script>
+</html>

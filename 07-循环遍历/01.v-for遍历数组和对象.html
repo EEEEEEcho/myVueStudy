@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{ message }}</h2>
+        <!-- 遍历数组 -->
+        <ul>
+            <!-- 没有使用索引值 -->
+            <li v-for="item in items">{{item}}</li>
+        </ul>
+        <ul>
+            <!-- 使用索引值 -->
+            <li v-for="(item,index) in items">{{index}} - {{item}}</li>
+        </ul>
+
+
+        <!-- 遍历对象,直接遍历会获取对象中的值 -->
+        <ul>
+            <li v-for="item in info">{{item}}</li>
+        </ul>
+        <!-- 获取key和value 格式：{value key}-->
+        <ul>
+            <li v-for="(value,key) in info">{{value}} - {{key}}</li>
+        </ul>
+        <!-- 获取key，value和index 格式：{value key index}-->
+        <ul>
+            <li v-for="(value,key,index) in info">{{value}} - {{key}} - {{index}}</li>
+        </ul>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"Hello world",
+            items:['echo','mengs','shuai','bi'],
+            info:{
+                name:"echo",
+                age:14,
+                height:"80kg"
+            }
+        }
+    });
+</script>
+</html>

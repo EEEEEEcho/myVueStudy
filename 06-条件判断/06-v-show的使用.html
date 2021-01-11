@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2 v-if="isShow">{{message}}</h2>
+        <h2 v-show="isShow">{{message}}</h2>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"Hello world",
+            isShow:true
+        }
+    })
+    //当isShow变为false之后，使用v-if修饰的元素，直接就不会被渲染在html中，而v-show修饰的元素会渲染在html上，
+    //但是其style属性变为：display-none
+    
+</script>
+</html>

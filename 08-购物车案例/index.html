@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="books.length > 0">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>书籍名称</th>
+                        <th>出版日期</th>
+                        <th>价格</th>
+                        <th>购买数量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(book,index) in books">
+                        <td>{{book.id}}</td>
+                        <td>{{book.name}}</td>
+                        <td>{{book.date}}</td>
+                        <!-- 传入一个过滤器，修改价格 -->
+                        <td>{{book.price | formatPrice}}</td>
+                        <td>
+                            <button @click="decrement(index)" :disabled="book.count <= 1">-</button>
+                            {{book.count}}
+                            <button @click="increment(index)">+</button>
+                        </td>
+                        <td><button @click="remove(index)">移除</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>总价格{{totalPrice |formatPrice}}</h3>
+        </div>
+        <h3 v-else>购物车为空</h3>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script src="./main.js"></script>
+
+</html>
