@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="app">
+            <h2>{{ message }}</h2>
+            <cpn v-bind:cmovies="movies" v-bind:cmessage="message"></cpn>
+            <cpn2 :cmessage="message" :cmovies="movies"></cpn2>
+		</div>
+    </body>
+    <!-- 1.创建模板 -->
+    <template id="cpn">
+        <div>
+            <p>{{cmovies}}</p>
+            <ul>
+                <li v-for="item in cmovies">{{item}}</li>
+            </ul>
+            <h2>{{cmessage}}</h2>
+        </div>
+    </template>
+    
+	<script src="../js/vue.js"></script>
+	<script>
+        // 2.定义组件,语法糖
+        const cpn = {
+            template:"#cpn",    //绑定模板
+            props:['cmovies','cmessage'],   //定义属性用来与父组件进行通信,方式一
+            data(){
+                return{
+
+                }
+            },
+        };
+
+        const cpn2 = {
+            template:"#cpn",
+            // 方式二，通过对象
+            props:{
+                //进行类型的限制
+                //cmovies:Array,
+                //cmessage:String,
+
+                //传递默认值
+                cmessage:{
+                    type:String,        //类型
+                    default:"HAHA",      //默认值
+                    required:true       //该属性必须传值
+                },
+                //类型对象是数组时，默认值必须是一个函数
+                cmovies:{
+                    type:Array,
+                    //default:[] 默认值必须是一个函数，所以这样不行
+                    default(){
+                        return []
+                    },
+
+                }
+            },
+            data(){
+                return {
+
+                }
+            }
+        }
+
+		const app = new Vue({
+			el:"#app",
+			data:{
+                message:"Hello world",
+                movies:['海王','海的女儿','帅比'],
+            },
+            components:{
+                cpn:cpn,
+                cpn2:cpn2
+            }
+		});
+	</script>
+</html>

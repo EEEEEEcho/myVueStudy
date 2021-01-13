@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="app">
+            <!-- 单选select -->
+			<select name="fruits"  v-model="fruit">
+                <option value="苹果">苹果</option>
+                <option value="香蕉">香蕉</option>
+                <option value="葡萄">葡萄</option>
+                <option value="大粪">大粪</option>
+            </select>
+
+
+            <!-- 单选select -->
+			<select name="fruits"  v-model="fruits" multiple>
+                <option value="苹果">苹果</option>
+                <option value="香蕉">香蕉</option>
+                <option value="葡萄">葡萄</option>
+                <option value="大粪">大粪</option>
+            </select>
+            <h2>{{fruits}}</h2>
+
+            <!-- 值绑定:就是checkbox中的值并不是写死的 -->
+            <label v-for="item in originFruits" v-bind:for="item">
+                <input type="checkbox" :value="item" v-bind:id="item" v-model="fruits">{{item}}
+            </label>
+            <h2>{{fruits}}</h2>
+		</div>
+	</body>
+	<script src="../js/vue.js"></script>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+                message:"Hello world",
+                fruit:"香蕉",
+                fruits:[],
+                originFruits:['大便','葡萄','火龙果']
+			}
+		});
+	</script>
+</html>

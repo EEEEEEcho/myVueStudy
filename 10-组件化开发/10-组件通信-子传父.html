@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="app">
+            <!-- 监听子组件发出的btn-click，然后交由listenBtnClick处理 -->
+			<cpn @btn-click="listenBtnClick"></cpn>
+		</div>
+    </body>
+    
+    <template id="tmp">
+        <div>
+            <!-- 为按钮的点击添加事件进行监听 -->
+            <button v-for="item in categroies" @click="itemClick(item)">{{item.name}}</button>
+        </div>
+    </template>
+
+	<script src="../js/vue.js"></script>
+	<script>
+
+
+        const cpn = {
+            template:"#tmp",
+            data(){
+                return {
+                    categroies:[
+                        {id:'a',name:'艾欧尼亚'},
+                        {id:'b',name:'德玛西亚'},
+                        {id:'c',name:'扭曲丛林'},
+                        {id:'d',name:'无畏先锋'},
+                    ]
+                }
+            },
+            methods:{
+                itemClick(item){
+                    // 为了与父组件通信，需要将事件“发射”出去。
+                    // this.$emit("btn-click",item) btn-click是发出的事件名称，这个事件要在父组件中监听
+                    // item是事件中传递的参数，可以直接传递回父组件
+                    this.$emit("btn-click",item);
+                }
+            }
+        }
+
+		const app = new Vue({
+			el:"#app",
+			data:{
+				message:"Hello world"
+            },
+            components:{
+                cpn
+            },
+            methods:{
+                listenBtnClick(item){
+                    console.log("监听到了子组件的数据",item);
+                }
+            }
+		});
+	</script>
+</html>

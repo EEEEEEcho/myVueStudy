@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="app">
+            <cpn></cpn>
+            <cpn2></cpn2>
+        </div>
+        <div id="app2">
+            <cpn></cpn>
+            <!-- 这里没有办法调用app中注册的局部组件 -->
+            <cpn2></cpn2>
+        </div>
+	</body>
+	<script src="../js/vue.js"></script>
+	<script>
+        const cpnC = Vue.extend({
+            template:`
+                <div>
+                    <h2>标题</h2>
+                    <p>内容</p>
+                </div>
+            `
+        });
+        // 这样创建的就是全局组件
+        // 全局组件意味着可以在所有的Vue实例中使用
+        Vue.component('cpn',cpnC);
+
+        const cpnC2 = Vue.extend({
+            template:`
+            <div>
+                <h2>局部组件</h2>
+                <p>内容</p>
+            </div>
+            `
+        })
+		const app = new Vue({
+			el:"#app",
+			data:{
+				message:"Hello world"
+            },
+            // 在实例内部注册的组件为局部组件，只能在这个Vue实例中使用
+            components:{
+                // cpn2:cpnC2 第一个参数为组件名称，第二个参数为组件的构造器
+                cpn2:cpnC2
+            }
+        });
+        const app2 = new Vue({
+            el:"#app2",
+        })
+	</script>
+</html>
