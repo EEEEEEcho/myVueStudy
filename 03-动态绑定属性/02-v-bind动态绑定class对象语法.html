@@ -10,6 +10,7 @@
 		</style>
 	</head>
 	<body>
+		<!-- v-bind绑定的是属性啊。。。。。。！！！！！！ -->
 		<div id="app">
 			<!-- <h2 :class="active">{{message}}</h2> -->
 			<!-- 当boolean值为true时，将该类附加到标签上 -->
@@ -17,6 +18,11 @@
 			<!-- isActive为true时，会有active类，然后该类被类选择器选择，进而将message渲染为红色 -->
 			<!-- 如果定义了静态的class，vue内部会将动态class以及静态class进行合并 -->
 			<h2 class="title" :class="{active:isActice,line:isLine}">{{message}}</h2>
+			<button @click="btnClick">按钮</button>
+		</div>
+
+		<div id="app2">
+			<h2 v-bind:class="{active:isActice}">{{message}}</h2>
 			<button @click="btnClick">按钮</button>
 		</div>
 	</body>
@@ -35,5 +41,17 @@
 				}
 			}
 		});
+		const app2 = new Vue({
+			el:"#app2",
+			data:{
+				message:"My World",
+				isActice:true
+			},
+			methods:{
+				btnClick(){
+					this.isActice = !this.isActice
+				}
+			}
+		})
 	</script>
 </html>

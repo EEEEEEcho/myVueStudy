@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .redColor{
+				color: #FF0000;
+		}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(movie,index) in movies" 
+            :class="{redColor:index == tmpIndex}"
+            @click="liClick(index)">{{movie}}</li>
+        </ul>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            tmpIndex:0,
+            movies:['钢铁侠','美国队长','绿巨人','蝙蝠侠']
+        },
+        methods:{
+            liClick(index){
+                console.log(index);
+                this.tmpIndex = index;
+            }
+        }
+    })
+</script>
+</html>

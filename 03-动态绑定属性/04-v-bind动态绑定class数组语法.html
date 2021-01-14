@@ -13,6 +13,13 @@
 			<!-- 使用方法 -->
 			<h2 class="title" :class="getClasses()">{{message}}</h2>
 		</div>
+
+		<div id="app2">
+			<h2 class="title" :class="['active','line']">{{message}}</h2>
+			<h2 class="title" :class="[active,line]">{{message}}</h2>
+			<h2 class="title" :class="getClasses()">{{message}}</h2>
+		</div>
+
 	</body>
 	<script src="../js/vue.js"></script>
 	<script>
@@ -29,5 +36,19 @@
 				}
 			}
 		});
+
+		const app2 = new Vue({
+			el:"#app2",
+			data:{
+				message:"Hello Review",
+				active:"aaa",
+				line:"bbb"
+			},
+			methods:{
+				getClasses(){
+					return [this.active,this.line]
+				}
+			}
+		})
 	</script>
 </html>

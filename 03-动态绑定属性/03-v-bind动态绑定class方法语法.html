@@ -14,6 +14,11 @@
 			<h2 class="title" :class="getClasses()">{{message}}</h2>
 			<button @click="btnClick">按钮</button>
 		</div>
+
+		<div id="app2">
+			<h2 class="title" v-bind:class="getClasses()">{{message}}</h2>
+			<button @click="btnClick">click me</button>
+		</div>
 	</body>
 	<script src="../js/vue.js"></script>
 	<script>
@@ -33,5 +38,25 @@
 				}
 			}
 		});
+
+		const app2 = new Vue({
+			el:"#app2",
+			data:{
+				message:"Hello Review",
+				isActive:true,
+				isLine:true
+			},
+			methods:{
+				btnClick(){
+					this.isActive = !this.isActive;
+					this.isLine = !this.isLine;
+				},
+				getClasses(){
+					return {active:this.isActive,line:this.isLine};
+				}
+			}
+		});
+
+
 	</script>
 </html>

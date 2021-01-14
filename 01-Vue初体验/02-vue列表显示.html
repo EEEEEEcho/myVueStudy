@@ -13,6 +13,13 @@
 				</li>
 			</ul>
 		</div>
+		<div id="app2">
+			<ul>
+				<li v-for="city in citys">
+					{{city}}
+				</li>
+			</ul>
+		</div>
 	</body>
 	<script>
 		const app = new Vue({
@@ -24,5 +31,11 @@
 				]
 			}
 		});
+		const app2 = new Vue({
+			el:"#app2",
+			data:{
+				citys:['北京','上海','深圳','广州']
+			}
+		})
 	</script>
 </html>

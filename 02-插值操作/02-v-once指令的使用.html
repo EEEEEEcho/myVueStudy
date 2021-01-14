@@ -10,6 +10,10 @@
 			<!-- v-once只渲染一次，当数据再次改变后不再改变 -->
 			<h2 v-once>{{message}}</h2>
 		</div>
+		<div id="app2">
+			<h2>{{message}}</h2>
+			<h2 v-once>{{message}}</h2>
+		</div>
 	</body>
 	<script src="../js/vue.js"></script>
 	<script>
@@ -17,6 +21,12 @@
 			el:"#app",
 			data:{
 				message:"Hello world"
+			}
+		});
+		const app2 = new Vue({
+			el:"#app2",
+			data:{
+				message:"hhhhh"
 			}
 		});
 	</script>

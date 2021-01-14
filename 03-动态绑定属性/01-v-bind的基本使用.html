@@ -11,6 +11,9 @@
 			<!-- 语法糖 -->
 			<a :href="href">百度一下2</a>
 		</div>
+		<div id="app2">
+			<a v-bind:href="href">操你一下</a>
+		</div>
 	</body>
 	<script src="../js/vue.js"></script>
 	<script>
@@ -22,5 +25,11 @@
 				href:"https://www.baidu.com"
 			}
 		});
+		const app2 = new Vue({
+			el:"#app2",
+			data:{
+				href:"https://www.baidu.com"
+			}
+		})
 	</script>
 </html>

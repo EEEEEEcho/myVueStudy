@@ -10,7 +10,12 @@
 			<h2>{{ counter }}</h2>
 			<button v-on:click="add">+</button>
 			<button @click="sub">-</button>
-		</diV>
+		</div>
+		<div id="app2">
+			<h2>{{counter}}</h2>
+			<button @click="increment">+</button>
+			<button @click="decrement">-</button>
+		</div>
 	</body>
 	<script>
 		const app = new Vue({
@@ -30,5 +35,20 @@
 				}
 			}
 		});
+
+		const app2 = new Vue({
+			el:"#app2",
+			data:{
+				counter:1,
+			},
+			methods:{
+				increment(){
+					this.counter ++;
+				},
+				decrement(){
+					this.counter --;
+				}
+			}
+		})
 	</script>
 </html>

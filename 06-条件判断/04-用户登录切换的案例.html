@@ -17,6 +17,16 @@
         </span>
         <button @click="loginState = !loginState">切换状态</button>
     </div>
+
+    <div id="app2">
+        <span v-if="isUsername">
+            <label for="username"><input type="text" id="username" placeholder="用户名"></label>
+        </span>
+        <span v-else>
+            <label for="email"><input type="text" id="email" placeholder="邮箱"></label>
+        </span>
+        <button @click="change">点击</button>
+    </div>
 </body>
 <script src="../js/vue.js"></script>
 <script>
@@ -24,6 +34,18 @@
         el :"#app",
         data:{
             loginState:true
+        }
+    });
+
+    const app2 = new Vue({
+        el:"#app2",
+        data:{
+            isUsername:true
+        },
+        methods:{
+            change(){
+                this.isUsername = !this.isUsername;
+            }
         }
     })
 </script>
