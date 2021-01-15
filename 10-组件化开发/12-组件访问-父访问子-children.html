@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpn ref='aaa'></cpn>
+        <cpn></cpn>
+        <cpn></cpn>
+        <button @click="btnClick">Button</button>
+    </div>
+</body>
+<template id="cpn">
+    <div>我是子组件</div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        components:{
+            cpn:{
+                template:"#cpn",
+                methods:{
+                    showMessage(){
+                        console.log("子组件中的showMessage");
+                    }
+                },
+                data(){
+                    return{
+                        elements:['a','b','c']
+                    }
+                }
+            }
+        },
+        methods:{
+            btnClick(){
+                // 访问子组件 $children 
+                // console.log(this.$children);
+                // this.$children[0].showMessage();
+                // this.$children[0].elements.push('d');
+                // 但在实际开发中一般不会这样做，而是使用$ref属性来拿 $ref是一个对象类型，
+                // 然而要使用$refs，必须在组件中添加 一个ref属性（可以当作该组件的键） <cpn ref='aaa'></cpn>
+                // 然后再拿的时候，就会以键值对的形式拿到 {aaa: VueComponent}
+                console.log(this.$refs); 
+                console.log(this.$refs['aaa'].elements);
+            }
+        }
+    })
+</script>
+</html>

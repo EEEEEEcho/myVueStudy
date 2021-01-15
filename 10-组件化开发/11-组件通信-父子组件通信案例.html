@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="app">
+			<cpn :number1="num1" :number2="num2" @input-change="listeninput"></cpn>
+		</div>
+    </body>
+    <template id="cpn">
+        <div>
+            <h2>props:number1:{{number1}}</h2>
+            <h2>data:dnum1:{{dnum1}}</h2>
+            <!-- 在进行双向绑定时，最好不要绑定与父组件进行通信的属性 ，而是采取这种办法-->
+            <input type="text" v-model="dnum1"/><br>
+            <!-- 实现数据改变时同时能够影响父组件中的数据 -->
+            <p>实现数据改变时同时能够影响父组件中的数据</p>
+            <input type="text" :value="dnum1" @input="input1Change"><br>
+            <h2>props:number2:{{number2}}</h2>
+            <h2>data:dnum2:{{dnum2}}</h2>
+            <input type="text" v-model="dnum2"/>
+        </div>
+    </template>
+	<script src="../js/vue.js"></script>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+                num1:0,
+                num2:1
+            },
+            components:{
+                cpn:{
+                    template:"#cpn",
+                    props:{
+                        number1:{
+                            type:Number
+                        },
+                        number2:{
+                            type:Number
+                        }
+                    },
+                    data(){
+                        return{
+                            dnum1:this.num1,
+                            dnum2:this.num2
+                        }
+                    },
+                    methods:{
+                        input1Change(event){
+                            this.dnum1 = event.target.value;
+                            console.log(this.dnum1);
+                            this.$emit("input-change",this.dnum1);
+                        }
+                    }
+                }
+            },
+            methods:{
+                listeninput(dnum1){
+                    this.num1=dnum1 * 1;
+                }
+            }
+		});
+	</script>
+</html>
