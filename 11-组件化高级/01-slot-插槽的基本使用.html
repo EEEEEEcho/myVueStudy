@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="app">
+            <!-- 这样的话，这个button就插到了插槽里 -->
+            <cpn><button>按钮</button></cpn>
+            
+            <cpn><a href="https://www.baidu.com/">操我一下</a></cpn>
+
+            <cpn><cpn></cpn></cpn>
+            <!-- 如果有多个值放入到组件的插槽中时，
+                这些值会一起作为一个整体放到插槽中
+            -->
+            <cpn>
+                <p>hhh</p>
+                <i>sss</i>
+                <p>daa</p>
+            </cpn>
+		</div>
+    </body>
+    <template id="cpn">
+        <div>
+            <h2>我是组件哈哈哈</h2>
+            <p>我是组件哈哈哈</p>
+            <!-- 预留一个插槽，使得组件能够有扩展性 -->
+            <slot></slot>
+            <slot><button>插槽中的默认值</button></slot>
+        </div>
+    </template>
+    <!-- 插槽的目的是让我们的组件更具有扩展性 -->
+	<script src="../js/vue.js"></script>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+				message:"Hello world"
+			},
+            components:{
+                cpn:{
+                    template:"#cpn"
+                }
+            }
+		});
+	</script>
+</html>

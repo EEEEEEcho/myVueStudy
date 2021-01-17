@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="app">
+            <cpn></cpn>
+
+            <cpn>
+                <!-- 目的，获取子组件中的languages中的数据, -->
+                <!-- 原来插槽中的默认数据是一个ul列表，现在，想修改它的默认实现。让其
+                变成一堆span，但是数据还是使用默认插槽中的数据。所以，在默认插槽中绑定一个数据
+                :data，然后在组件中使用template来覆盖默认插槽。但是要定义一个slot-scope来引用组件中的默认插槽中的数据 -->
+                <template slot-scope="slot">
+                    <span v-for="item in slot.data">{{item}}-</span>
+                </template>
+            </cpn>
+		</div>
+    </body>
+    <template id="cpn">
+        <div>
+            <slot :data="languages">
+                <ul>
+                    <li v-for="language in languages">{{language}}</li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+	<script src="../js/vue.js"></script>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+				message:"Hello world"
+            },
+            components:{
+                cpn:{
+                    template:"#cpn",
+                    data(){
+                        return{
+                            languages:['javascript','java','python','c++','go','swift','c#']
+                        }
+                    }
+                }
+            }
+		});
+	</script>
+</html>
