@@ -17,7 +17,7 @@ module.exports = {
         //这个参数的出现是因为，当图片经过file-loader打包后会打包到dist文件加下，但是css渲染的路径
         //是当前html的路径。因此会找不到图片文件的位置，因此需要在这里定义一个publicPath来使其能够找到
         //文件的位置,以后涉及到url的路径，前面都会拼接dist/
-        publicPath:'dist/'
+        publicPath: 'dist/'
     },
     module: {
         rules: [
@@ -58,11 +58,22 @@ module.exports = {
                             //当加载的图片小于这个limit时，会将图片编译成一个base64格式的字符串
                             limit: 8192,
                             //配置图片的命名规则
-                            name:'img/[name].[hash:8].[ext]'
+                            name: 'img/[name].[hash:8].[ext]'
                         },
                     },
                 ],
             },
+            //babel-loader，用来将ES6转换为ES5
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['es2015']
+                    }
+                }
+            }
         ],
     }
 }

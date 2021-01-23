@@ -5,6 +5,8 @@
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/01-webpackHowToUse/05-webpackPlugin/node_modules/vue/src/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/01-webpackHowToUse/06-webpackPropertiesDispatch/node_modules/vue/src/platforms" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

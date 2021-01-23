@@ -562,51 +562,58 @@ function updateLink (link, options, obj) {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_info__ = __webpack_require__(4);
-const {add,mul} = __webpack_require__(3)
-console.log(add(20,30));
-console.log(mul(20,30));
 
-console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["c" /* name */],__WEBPACK_IMPORTED_MODULE_0__js_info__["a" /* age */],__WEBPACK_IMPORTED_MODULE_0__js_info__["b" /* height */]);
+
+var _info = __webpack_require__(3);
+
+var _require = __webpack_require__(4),
+    add = _require.add,
+    mul = _require.mul;
+
+console.log(add(20, 30));
+console.log(mul(20, 30));
+
+console.log(_info.name, _info.age, _info.height);
 //依赖css文件
-__webpack_require__(5)
+__webpack_require__(5);
 //依赖less文件
-__webpack_require__(10)
+__webpack_require__(10);
 document.writeln('<h2>石家庄加油</h2>');
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function add(num1,num2){
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var name = exports.name = "why";
+var age = exports.age = 18;
+var height = exports.height = 1.88;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function add(num1, num2) {
     return num1 + num2;
 }
-function mul(num1,num2){
+function mul(num1, num2) {
     return num1 * num2;
 }
 
 module.exports = {
-    add,mul
-}
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const name = "why";
-/* harmony export (immutable) */ __webpack_exports__["c"] = name;
-
-const age = 18;
-/* harmony export (immutable) */ __webpack_exports__["a"] = age;
-
-const height = 1.88;
-/* harmony export (immutable) */ __webpack_exports__["b"] = height;
-
+    add: add, mul: mul
+};
 
 /***/ }),
 /* 5 */
