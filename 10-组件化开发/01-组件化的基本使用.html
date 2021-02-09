@@ -15,6 +15,7 @@
             <div>
                 <div>
                     <my-con></my-con>
+                    <myc></myc>
                 </div>
             </div>
         </div>
@@ -31,6 +32,17 @@
                 <p>这是内容2......</p>
             </div>`
         });
+        const myComponenet = Vue.extend(
+            {
+                template:`
+                    <div>
+                        <h2>组件化开发</h2>
+                    </div>
+                `
+            }
+        )
+        Vue.component('myc',myComponenet);
+
         //2.注册组件
         //Vue.compoment('组件名',组件);
         Vue.component('my-con',myC);

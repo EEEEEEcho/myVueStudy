@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-if="books.length > 0">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>书籍名称</th>
+                        <th>出版日期</th>
+                        <th>价格</th>
+                        <th>购买数量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(book,index) in books">
+                        <td>{{book.id}}</td>
+                        <td>{{book.name}}</td>
+                        <td>{{book.date}}</td>
+                        <td>{{book.price | priceFilter}}</td>
+                        <td>
+                            <button @click="increment(index)">+</button>
+                            {{book.count}}
+                            <button @click="decrement(index)" :disabled="book.count <= 1">-</button>
+                        </td>
+                        <td><button @click="remove(index)">移除</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>总价格:{{totalPrice | priceFilter}}</h3>
+        </div>
+        <div v-else><h3>买NMB</h3></div>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:'#app',
+        data:{
+            books:[
+                {
+                    id:1,
+                    name:'java编程思想',
+                    date:'2020-02-20',
+                    price:87.45,
+                    count:2
+                },
+                {
+                    id:2,
+                    name:'java编程思想2',
+                    date:'2020-02-20',
+                    price:77.45,
+                    count:2
+                },
+                {
+                    id:3,
+                    name:'java编程思想3',
+                    date:'2020-02-20',
+                    price:67.45,
+                    count:2
+                },
+                {
+                    id:4,
+                    name:'java编程思想4',
+                    date:'2020-02-20',
+                    price:57.45,
+                    count:2
+                },
+            ]
+        },
+        methods:{
+            decrement(index){
+                this.books[index].count --;  
+            },
+            increment(index){
+                this.books[index].count ++;
+            },
+            remove(index){
+                this.books.splice(index,1);
+            }
+        },
+        filters:{
+            priceFilter(price){
+                return price.toFixed(2) + "￥"
+            }
+        },
+        computed:{
+            totalPrice(){
+                return this.books.reduce((previous,book) => {
+                    return previous + book.count * book.price;
+                },0);
+            }
+        }
+    })
+</script>
+</html>
